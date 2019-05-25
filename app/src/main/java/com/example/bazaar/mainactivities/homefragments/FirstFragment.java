@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +34,15 @@ public class FirstFragment extends Fragment  {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         myView =inflater.inflate(R.layout.first_layout,container,false);
         final TextView P1=(TextView) myView.findViewById(R.id.p1);
+        P1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager=getFragmentManager();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.content_frame,new ProductDetails())
+                        .commit();
+            }
+        });
         final TextView P2=(TextView) myView.findViewById(R.id.p2);
         final TextView P3=(TextView) myView.findViewById(R.id.p3);
         final TextView P4=(TextView) myView.findViewById(R.id.p4);

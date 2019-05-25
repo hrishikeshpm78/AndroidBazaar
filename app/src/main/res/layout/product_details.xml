@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="250dp"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/iphone"
+
+                    />
+                <TextView
+                    android:id="@+id/pd_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:text="Name"
+                    android:layout_marginTop="10dp"
+                    android:textSize="30sp"
+                    android:textAlignment="center"/>
+                <TextView
+                    android:id="@+id/pd_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:text="Category"
+                    android:layout_marginTop="4dp"
+                    android:textSize="30sp"
+                    android:textAlignment="center"/>
+                <TextView
+                    android:id="@+id/pd_price"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="4dp"
+                    android:layout_height="40dp"
+                    android:text="Price"
+                    android:textSize="30sp"
+                    android:textAlignment="center"/>
+                <TextView
+                    android:id="@+id/pd_rating"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:text="Rating"
+                    android:layout_marginTop="4dp"
+                    android:textSize="30sp"
+                    android:textAlignment="center"/>
+                <LinearLayout
+                    android:id="@+id/pd_attributes"
+                    android:layout_marginTop="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+
+                    >
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/pd_merchants"
+                    android:layout_marginTop="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="40dp"
+                    android:orientation="horizontal">
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Add to Cart"
+                        android:layout_gravity="start"
+                        android:layout_marginLeft="60dp"/>
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Buy Now"
+                        android:layout_marginLeft="60dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

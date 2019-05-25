@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.bazaar.R;
 import com.example.bazaar.pojos.product.Product;
@@ -41,6 +42,8 @@ public class CartPageAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
     public void onBindViewHolder(@NonNull RecyclerViewHolder recyclerViewHolder, int position) {
 
         recyclerViewHolder.pName.setText(list.get(position).getName());
+
+        
 
         //recyclerViewHolder.examDate.setText(list.get(position).date);
     }

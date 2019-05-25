@@ -30,7 +30,7 @@ public class SecondFragment extends Fragment  {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        myView =inflater.inflate(R.layout.first_layout,container,false);
+        myView =inflater.inflate(R.layout.second_layout,container,false);
         final TextView P1=(TextView) myView.findViewById(R.id.p12);
         final TextView P2=(TextView) myView.findViewById(R.id.p22);
         final TextView P3=(TextView) myView.findViewById(R.id.p32);

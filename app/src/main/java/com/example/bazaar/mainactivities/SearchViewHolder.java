@@ -2,7 +2,9 @@ package com.example.bazaar.mainactivities;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.bazaar.R;
@@ -16,5 +18,7 @@ public class SearchViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         pName = (TextView) itemView.findViewById(R.id.product_search_text);
         image = (ImageView) itemView.findViewById(R.id.imagesearch);
+
+
     }
 }

@@ -99,7 +99,9 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("hii",responseFromUser.getStatus());
                 if(responseFromUser.getStatus().equals("success")){
                     Intent intent = new Intent(MainActivity.this, Home.class);
-                    intent.putExtra("UserName",R.id.userName);
+                    if(userName!=null){
+                        intent.putExtra("UserName",R.id.userName);
+                    }
                     startActivity(intent);
                 }else{
                     Toast toast=Toast.makeText(MainActivity.this,"Wrong credentials",Toast.LENGTH_LONG);
