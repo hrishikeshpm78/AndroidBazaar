@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".mainactivities.Home">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+            <EditText
+
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:id="@+id/search_value"
+                android:background="#FCFCFC"
+                android:textColor="@color/colorPrimaryDark"
+                android:hint="Enter the item"
+
+                >
+            </EditText>
+            <ImageView
+                android:id="@+id/search_button2"
+                android:layout_width="100px"
+                android:layout_height="wrap_content"
+                app:srcCompat="@android:drawable/ic_search_category_default" />
+            <ImageView
+                android:id="@+id/cartimg"
+                android:layout_width="100px"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/cart"
+                />
+            <TextView
+                android:id="@+id/noOfCart"
+                android:layout_width="20dp"
+                android:textSize="20sp"
+                android:layout_height="wrap_content"
+                android:text="0"
+
+                />
+        </android.support.v7.widget.Toolbar>
+
+
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_home" />
+
+</android.support.design.widget.CoordinatorLayout>

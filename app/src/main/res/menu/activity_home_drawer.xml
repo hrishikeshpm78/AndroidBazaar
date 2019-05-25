@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_first_layout"
+            android:icon="@drawable/phone"
+            android:title="Mobile Phones" />
+        <item
+            android:id="@+id/nav_second_layout"
+            android:icon="@drawable/laptop"
+            android:title="Laptops" />
+        <item
+            android:id="@+id/nav_third_layout"
+            android:icon="@drawable/fashion"
+            android:title="Fashion" />
+
+    </group>
+
+    <item android:title="My Account">
+        <menu>
+            <item
+                android:id="@+id/nav_my_profile"
+                android:icon="@drawable/myprofile"
+                android:title="My Profile" />
+            <item
+                android:id="@+id/nav_my_cart"
+                android:icon="@drawable/cart"
+                android:title="My Cart" />
+            <item
+                android:id="@+id/nav_my_order"
+                android:icon="@drawable/myorder"
+                android:title="My Order" />
+        </menu>
+    </item>
+    <item android:title="Account">
+        <menu>
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/logout"
+                android:title="Log Out" />
+        </menu>
+    </item>
+
+</menu>
