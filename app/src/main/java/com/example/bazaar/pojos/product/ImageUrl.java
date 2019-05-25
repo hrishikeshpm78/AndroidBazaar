@@ -29,11 +29,11 @@ public class ImageUrl{
 	}
 
 	@Override
- 	public String toString(){
-		return 
-			"ImageUrl{" + 
-			"1 = '" + jsonMember1 + '\'' + 
-			",2 = '" + jsonMember2 + '\'' + 
-			"}";
-		}
+	public String toString(){
+		return
+				"ImageUrl{" +
+						"1 = '" + jsonMember1 + '\'' +
+						",2 = '" + jsonMember2 + '\'' +
+						"}";
+	}
 }

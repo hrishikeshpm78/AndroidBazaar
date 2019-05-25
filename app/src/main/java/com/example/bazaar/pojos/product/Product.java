@@ -3,14 +3,16 @@ package com.example.bazaar.pojos.product;
 //import javax.annotation.Generated;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Map;
+
 //@Generated("com.robohorse.robopojogenerator")
 public class Product{
 
 	@SerializedName("subCategory")
 	private String subCategory;
 
-	@SerializedName("price")
-	private int price;
+	@SerializedName("productId")
+	private String productId;
 
 	@SerializedName("imageUrl")
 	private ImageUrl imageUrl;
@@ -19,22 +21,16 @@ public class Product{
 	private String name;
 
 	@SerializedName("rating")
-	private int rating;
+	private double rating;
 
 	@SerializedName("company")
 	private String company;
 
-	@SerializedName("mrp")
-	private int mrp;
-
-	@SerializedName("id")
-	private int id;
-
-	@SerializedName("avilable")
-	private boolean avilable;
+	@SerializedName("availability")
+	private boolean availability;
 
 	@SerializedName("productAttribute")
-	private ProductAttribute productAttribute;
+	private Map<String,String> productAttribute;
 
 	public void setSubCategory(String subCategory){
 		this.subCategory = subCategory;
@@ -44,12 +40,12 @@ public class Product{
 		return subCategory;
 	}
 
-	public void setPrice(int price){
-		this.price = price;
+	public void setProductId(String productId){
+		this.productId = productId;
 	}
 
-	public int getPrice(){
-		return price;
+	public String getProductId(){
+		return productId;
 	}
 
 	public void setImageUrl(ImageUrl imageUrl){
@@ -68,11 +64,11 @@ public class Product{
 		return name;
 	}
 
-	public void setRating(int rating){
+	public void setRating(double rating){
 		this.rating = rating;
 	}
 
-	public int getRating(){
+	public double getRating(){
 		return rating;
 	}
 
@@ -84,59 +80,38 @@ public class Product{
 		return company;
 	}
 
-	public void setMrp(int mrp){
-		this.mrp = mrp;
+	public void setAvailability(boolean availability){
+		this.availability = availability;
 	}
 
-	public int getMrp(){
-		return mrp;
+	public boolean isAvailability(){
+		return availability;
 	}
 
-	public void setId(int id){
-		this.id = id;
-	}
-
-	public int getId(){
-		return id;
-	}
-
-	public void setAvilable(boolean avilable){
-		this.avilable = avilable;
-	}
-
-	public boolean isAvilable(){
-		return avilable;
-	}
-
-	public void setProductAttribute(ProductAttribute productAttribute){
+	public void setProductAttribute(Map<String,String> productAttribute){
 		this.productAttribute = productAttribute;
 	}
 
-	public Product() {
+	public Map<String, String> getProductAttribute(){
+		return productAttribute;
 	}
 
 	public Product(String name) {
 		this.name = name;
 	}
 
-	public ProductAttribute getProductAttribute(){
-		return productAttribute;
-	}
-
 	@Override
- 	public String toString(){
-		return 
-			"Product{" + 
-			"subCategory = '" + subCategory + '\'' + 
-			",price = '" + price + '\'' + 
-			",imageUrl = '" + imageUrl + '\'' + 
-			",name = '" + name + '\'' + 
-			",rating = '" + rating + '\'' + 
-			",company = '" + company + '\'' + 
-			",mrp = '" + mrp + '\'' + 
-			",id = '" + id + '\'' + 
-			",avilable = '" + avilable + '\'' + 
-			",productAttribute = '" + productAttribute + '\'' + 
-			"}";
-		}
+	public String toString(){
+		return
+				"Product{" +
+						"subCategory = '" + subCategory + '\'' +
+						",productId = '" + productId + '\'' +
+						",imageUrl = '" + imageUrl + '\'' +
+						",name = '" + name + '\'' +
+						",rating = '" + rating + '\'' +
+						",company = '" + company + '\'' +
+						",availability = '" + availability + '\'' +
+						",productAttribute = '" + productAttribute + '\'' +
+						"}";
+	}
 }

@@ -48,13 +48,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(TextUtils.isEmpty(userName.getText())){
-                    Toast toast=Toast.makeText(MainActivity.this,"Server not responding",Toast.LENGTH_LONG);
+                    Toast toast=Toast.makeText(MainActivity.this,"Enter Username",Toast.LENGTH_LONG);
                     toast.show();
-                }if(TextUtils.isEmpty(password.getText())){
-                    Toast toast=Toast.makeText(MainActivity.this,"Server not responding",Toast.LENGTH_LONG);
+                }else if(TextUtils.isEmpty(password.getText())){
+                    Toast toast=Toast.makeText(MainActivity.this,"Enter password",Toast.LENGTH_LONG);
                     toast.show();
+                }else{
+                    signInUser(userName.getText().toString(),password.getText().toString());
                 }
-                signInUser(userName.getText().toString(),password.getText().toString());
             }
         });
 
@@ -98,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("hii",responseFromUser.getStatus());
                 if(responseFromUser.getStatus().equals("success")){
                     Intent intent = new Intent(MainActivity.this, Home.class);
-//        intent.putExtra("UserName",R.id.userName);
+                    intent.putExtra("UserName",R.id.userName);
                     startActivity(intent);
                 }else{
                     Toast toast=Toast.makeText(MainActivity.this,"Wrong credentials",Toast.LENGTH_LONG);
