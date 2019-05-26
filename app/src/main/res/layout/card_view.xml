@@ -24,7 +24,7 @@
                 android:layout_height="180dp"
                 android:layout_width="180dp"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/iphone"
+
                 >
             </ImageView>
             <TextView
@@ -36,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <TextView
-                android:id="@+id/prodPrice"
+                android:id="@+id/prod_price"
                 android:text="1"
                 android:textSize="25sp"
                 android:layout_gravity="center"

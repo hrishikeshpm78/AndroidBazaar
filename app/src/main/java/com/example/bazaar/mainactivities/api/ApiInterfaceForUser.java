@@ -1,5 +1,7 @@
 package com.example.bazaar.mainactivities.api;
 
+import com.example.bazaar.pojos.cart.CartDTO;
+import com.example.bazaar.pojos.cart.CartResponse;
 import com.example.bazaar.pojos.user.LoginRequest;
 import com.example.bazaar.pojos.user.ProfileResponse;
 import com.example.bazaar.pojos.user.ResponseFromUser;
@@ -26,5 +28,9 @@ public interface ApiInterfaceForUser
     @GET("/user/profile")
     Call<ProfileResponse> profile(@Query("accesstoken") String token);
 
+    @GET("/user/cart/details")
+    Call<CartResponse> getCart(@Query("accesstoken") String token);
 
+    @POST("/user/cart/add")
+    Call<CartResponse> addToCart(@Body CartDTO myCart);
 }

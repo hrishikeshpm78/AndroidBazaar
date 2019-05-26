@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.bazaar.R;
 import com.example.bazaar.pojos.product.Product;
 
@@ -16,11 +17,11 @@ import java.util.Collections;
 import java.util.List;
 
 public class CartPageAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
-    List<Product> list = Collections.emptyList();
+    List<CartObject> list = Collections.emptyList();
 
     Context context;
 
-    public CartPageAdapter(List<Product> list, Context context) {
+    public CartPageAdapter(List<CartObject> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -41,7 +42,12 @@ public class CartPageAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewHolder recyclerViewHolder, int position) {
 
-        recyclerViewHolder.pName.setText(list.get(position).getName());
+        recyclerViewHolder.pName.setText(list.get(position).getProdName());
+        recyclerViewHolder.pPrice.setText(Integer.toString(list.get(position).getProdPrice()));
+        recyclerViewHolder.quantity.setText(Integer.toString(list.get(position).getQuantity()));
+        Glide.with(recyclerViewHolder.image.getContext())
+                .load(list.get(position).getImgUrl())
+                .into(recyclerViewHolder.image);
 
 
 
@@ -52,16 +58,16 @@ public class CartPageAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
     public int getItemCount() {
         return list.size();
     }
-    private List<Product> getData()
-    {
-        List<Product> list = new ArrayList<>();
-        Product p=new Product("hihihihihihihih");
-        list.add(p);
-        list.add(p);
-        list.add(p);
-        list.add(p);
-        list.add(p);
-        list.add(p);
-        return list;
-    }
+//    private List<Product> getData()
+//    {
+//        List<Product> list = new ArrayList<>();
+//        Product p=new Product("hihihihihihihih");
+//        list.add(p);
+//        list.add(p);
+//        list.add(p);
+//        list.add(p);
+//        list.add(p);
+//        list.add(p);
+//        return list;
+//    }
 }

@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -88,7 +90,7 @@ public class SecondFragment extends Fragment  {
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
                 products= response.body();
                 System.out.println(products);
-
+                setImages(products);
                 ////Log.e("hii",products.get(0).getName());
 
 
@@ -182,5 +184,264 @@ public class SecondFragment extends Fragment  {
 
 
         return myView;
+    }
+    private void setImages(final List<Product> products) {
+        final ImageView Img1=(ImageView) myView.findViewById(R.id.img12);
+        final ImageView Img2=(ImageView) myView.findViewById(R.id.img22);
+        final ImageView Img3=(ImageView) myView.findViewById(R.id.img32);
+        final ImageView Img4=(ImageView) myView.findViewById(R.id.img42);
+        final ImageView Img5=(ImageView) myView.findViewById(R.id.img52);
+        final ImageView Img6=(ImageView) myView.findViewById(R.id.img62);
+        final ImageView Img7=(ImageView) myView.findViewById(R.id.img72);
+        final ImageView Img8=(ImageView) myView.findViewById(R.id.img82);
+        final ImageView Img9=(ImageView) myView.findViewById(R.id.img92);
+        final ImageView Img10=(ImageView) myView.findViewById(R.id.img102);
+        final ImageView Img11=(ImageView) myView.findViewById(R.id.img112);
+        final ImageView Img12=(ImageView) myView.findViewById(R.id.img122);
+        final ImageView Img13=(ImageView) myView.findViewById(R.id.img132);
+        final ImageView Img14=(ImageView) myView.findViewById(R.id.img142);
+        final ImageView Img15=(ImageView) myView.findViewById(R.id.img152);
+        Img1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String pid=products.get(0).getProductId();
+                Fragment fr=new ProductDetails();
+                FragmentManager fm=getFragmentManager();
+                FragmentTransaction ft=fm.beginTransaction();
+                Bundle args = new Bundle();
+                args.putString("PID", pid);
+                fr.setArguments(args);
+                ft.replace(R.id.content_frame, fr);
+                ft.commit();
+
+            }
+        });
+        Img2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String pid=products.get(1).getProductId();
+                Fragment fr=new ProductDetails();
+                FragmentManager fm=getFragmentManager();
+                FragmentTransaction ft=fm.beginTransaction();
+                Bundle args = new Bundle();
+                args.putString("PID", pid);
+                fr.setArguments(args);
+                ft.replace(R.id.content_frame, fr);
+                ft.commit();
+
+            }
+        });
+
+        Img3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String pid=products.get(2).getProductId();
+                Fragment fr=new ProductDetails();
+                FragmentManager fm=getFragmentManager();
+                FragmentTransaction ft=fm.beginTransaction();
+                Bundle args = new Bundle();
+                args.putString("PID", pid);
+                fr.setArguments(args);
+                ft.replace(R.id.content_frame, fr);
+                ft.commit();
+
+            }
+        });
+
+        Img4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String pid=products.get(3).getProductId();
+                Fragment fr=new ProductDetails();
+                FragmentManager fm=getFragmentManager();
+                FragmentTransaction ft=fm.beginTransaction();
+                Bundle args = new Bundle();
+                args.putString("PID", pid);
+                fr.setArguments(args);
+                ft.replace(R.id.content_frame, fr);
+                ft.commit();
+
+            }
+        });
+
+        Img5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String pid=products.get(4).getProductId();
+                Fragment fr=new ProductDetails();
+                FragmentManager fm=getFragmentManager();
+                FragmentTransaction ft=fm.beginTransaction();
+                Bundle args = new Bundle();
+                args.putString("PID", pid);
+                fr.setArguments(args);
+                ft.replace(R.id.content_frame, fr);
+                ft.commit();
+
+            }
+        });
+
+        Img6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String pid=products.get(5).getProductId();
+                Fragment fr=new ProductDetails();
+                FragmentManager fm=getFragmentManager();
+                FragmentTransaction ft=fm.beginTransaction();
+                Bundle args = new Bundle();
+                args.putString("PID", pid);
+                fr.setArguments(args);
+                ft.replace(R.id.content_frame, fr);
+                ft.commit();
+
+            }
+        });
+
+        Img7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String pid=products.get(6).getProductId();
+                Fragment fr=new ProductDetails();
+                FragmentManager fm=getFragmentManager();
+                FragmentTransaction ft=fm.beginTransaction();
+                Bundle args = new Bundle();
+                args.putString("PID", pid);
+                fr.setArguments(args);
+                ft.replace(R.id.content_frame, fr);
+                ft.commit();
+
+            }
+        });
+
+        Img8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String pid=products.get(7).getProductId();
+                Fragment fr=new ProductDetails();
+                FragmentManager fm=getFragmentManager();
+                FragmentTransaction ft=fm.beginTransaction();
+                Bundle args = new Bundle();
+                args.putString("PID", pid);
+                fr.setArguments(args);
+                ft.replace(R.id.content_frame, fr);
+                ft.commit();
+
+            }
+        });
+
+        Img9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String pid=products.get(8).getProductId();
+                Fragment fr=new ProductDetails();
+                FragmentManager fm=getFragmentManager();
+                FragmentTransaction ft=fm.beginTransaction();
+                Bundle args = new Bundle();
+                args.putString("PID", pid);
+                fr.setArguments(args);
+                ft.replace(R.id.content_frame, fr);
+                ft.commit();
+
+            }
+        });
+
+        Img10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String pid=products.get(9).getProductId();
+                Fragment fr=new ProductDetails();
+                FragmentManager fm=getFragmentManager();
+                FragmentTransaction ft=fm.beginTransaction();
+                Bundle args = new Bundle();
+                args.putString("PID", pid);
+                fr.setArguments(args);
+                ft.replace(R.id.content_frame, fr);
+                ft.commit();
+
+            }
+        });
+
+        Img11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String pid=products.get(10).getProductId();
+                Fragment fr=new ProductDetails();
+                FragmentManager fm=getFragmentManager();
+                FragmentTransaction ft=fm.beginTransaction();
+                Bundle args = new Bundle();
+                args.putString("PID", pid);
+                fr.setArguments(args);
+                ft.replace(R.id.content_frame, fr);
+                ft.commit();
+
+            }
+        });
+        Img12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String pid=products.get(11).getProductId();
+                Fragment fr=new ProductDetails();
+                FragmentManager fm=getFragmentManager();
+                FragmentTransaction ft=fm.beginTransaction();
+                Bundle args = new Bundle();
+                args.putString("PID", pid);
+                fr.setArguments(args);
+                ft.replace(R.id.content_frame, fr);
+                ft.commit();
+
+            }
+        });
+        Img13.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String pid=products.get(12).getProductId();
+                Fragment fr=new ProductDetails();
+                FragmentManager fm=getFragmentManager();
+                FragmentTransaction ft=fm.beginTransaction();
+                Bundle args = new Bundle();
+                args.putString("PID", pid);
+                fr.setArguments(args);
+                ft.replace(R.id.content_frame, fr);
+                ft.commit();
+
+            }
+        });
+        Img14.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String pid=products.get(13).getProductId();
+                Fragment fr=new ProductDetails();
+                FragmentManager fm=getFragmentManager();
+                FragmentTransaction ft=fm.beginTransaction();
+                Bundle args = new Bundle();
+                args.putString("PID", pid);
+                fr.setArguments(args);
+                ft.replace(R.id.content_frame, fr);
+                ft.commit();
+
+            }
+        });
+        Img15.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String pid=products.get(14).getProductId();
+                Fragment fr=new ProductDetails();
+                FragmentManager fm=getFragmentManager();
+                FragmentTransaction ft=fm.beginTransaction();
+                Bundle args = new Bundle();
+                args.putString("PID", pid);
+                fr.setArguments(args);
+                ft.replace(R.id.content_frame, fr);
+                ft.commit();
+
+            }
+        });
+
+
+
+
+
+
+
+
     }
 }

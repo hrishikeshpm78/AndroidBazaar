@@ -96,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
         LoginRequest l=new LoginRequest();
         l.setUname(uName);
         l.setPassword(upass);
+
         getRetrofitUser retrofitObject_user=new getRetrofitUser("http://172.16.20.81:8080");
         apiInterface =retrofitObject_user.getclient().create(ApiInterfaceForUser.class);
         Call<ResponseFromUser> call3=apiInterface.login(l);

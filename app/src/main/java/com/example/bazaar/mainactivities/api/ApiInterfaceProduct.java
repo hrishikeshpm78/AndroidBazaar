@@ -6,6 +6,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 public interface ApiInterfaceProduct {
 
@@ -17,4 +18,6 @@ public interface ApiInterfaceProduct {
     Call<List<Product>> getSubcategorylaptop();
     @GET("product/getsubcategory?subcategory=faishon")
     Call<List<Product>> getSubcategoryfaishon();
+    @GET("product/getproduct")
+    Call<Product>    getProduct(@Query("id") String id);
 }

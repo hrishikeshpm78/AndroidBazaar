@@ -17,14 +17,14 @@ import static okhttp3.logging.HttpLoggingInterceptor.Level.BODY;
 public class Api {
 
     //  final static String BASE_URL = "http://127.0.0.1:8080/";
-    static String BASE_URL = null;
-    static Retrofit retrofit1=null;
+     String BASE_URL = null;
+     Retrofit retrofit1=null;
 
     public Api(String url) {
         BASE_URL=url;
     }
 
-    public static   Retrofit getclient() {
+    public    Retrofit getclient() {
         if(retrofit1==null) {
             OkHttpClient.Builder builder = new OkHttpClient.Builder()
                     .addInterceptor(new HttpLoggingInterceptor().setLevel(BODY));

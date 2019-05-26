@@ -1,0 +1,28 @@
+package com.example.bazaar.pojos.cart;
+
+import java.util.List;
+//import javax.annotation.Generated;
+import com.google.gson.annotations.SerializedName;
+
+//@Generated("com.robohorse.robopojogenerator")
+public class Payload{
+
+	@SerializedName("list")
+	private List<ListItem> list;
+
+	public void setList(List<ListItem> list){
+		this.list = list;
+	}
+
+	public List<ListItem> getList(){
+		return list;
+	}
+
+	@Override
+ 	public String toString(){
+		return 
+			"Payload{" + 
+			"list = '" + list + '\'' + 
+			"}";
+		}
+}

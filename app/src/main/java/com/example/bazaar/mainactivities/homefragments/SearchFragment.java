@@ -62,9 +62,10 @@ public class SearchFragment extends Fragment  {
 
                     String status =searchResponseObject.getStatus();
                     Log.e("searchresponse", searchResponseObject.getStatus());
+
                     if(status.equals("success")) {
                         List<ProdlistItem> productList = payload.getProdlist();
-                        Log.e("searchresponse", productList.get(0).toString());
+//                        Log.e("searchresponse", productList.get(0).toString());
 
                         List<SearchObject> list = new ArrayList<>();
                         for (ProdlistItem product : productList) {
