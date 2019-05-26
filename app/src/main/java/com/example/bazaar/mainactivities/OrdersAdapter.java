@@ -47,16 +47,16 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrderViewHolder> {
         return list.size();
     }
 
-    private List<OrderObject> getData()
-    {
-        List<OrderObject> list = new ArrayList<>();
-        OrderObject p=new OrderObject("iphone",56700,"12-07-08","cod");
-        list.add(p);
-        list.add(p);
-        list.add(p);
-        list.add(p);
-        list.add(p);
-        list.add(p);
-        return list;
-    }
+//    private List<OrderObject> getData()
+//    {
+//        List<OrderObject> list = new ArrayList<>();
+//        OrderObject p=new OrderObject("iphone",56700,"12-07-08","cod");
+//        list.add(p);
+//        list.add(p);
+//        list.add(p);
+//        list.add(p);
+//        list.add(p);
+//        list.add(p);
+//        return list;
+//    }
 }

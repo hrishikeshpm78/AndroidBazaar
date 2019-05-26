@@ -6,11 +6,26 @@ import android.widget.TextView;
 
 public class SearchObject {
     private String productName;
-    private ImageView productImage;
+    private String productImage;
+    private String category;
 
-    public SearchObject(String productName, ImageView productImage) {
+    public SearchObject(String productName, String productImage) {
         this.productName = productName;
         this.productImage = productImage;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public SearchObject(String productName, String productImage, String category) {
+        this.productName = productName;
+        this.productImage = productImage;
+        this.category = category;
     }
 
     public SearchObject(String productName) {
@@ -25,11 +40,11 @@ public class SearchObject {
         this.productName = productName;
     }
 
-    public ImageView getProductImage() {
+    public String getProductImage() {
         return productImage;
     }
 
-    public void setProductImage(ImageView productImage) {
+    public void setProductImage(String productImage) {
         this.productImage = productImage;
     }
 }

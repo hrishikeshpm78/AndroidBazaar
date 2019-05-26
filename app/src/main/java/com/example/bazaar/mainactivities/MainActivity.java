@@ -21,6 +21,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
+    public static String accesstoken;
     private SharedPreferences sharedPreferences;
     private Button signInButton;
     private Button signUpButton;
@@ -79,6 +80,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
     private void signInUser(String uName, String upass) {
         //fetch user details
         sharedPreferences = getSharedPreferences(MyPREFERENCES,0);
@@ -105,6 +111,8 @@ public class MainActivity extends AppCompatActivity {
                     if(userName!=null){
                         intent.putExtra("UserName",R.id.userName);
                     }
+                    accesstoken=responseFromUser.getAccesstoken();
+                    Log.e("login",accesstoken);
                     startActivity(intent);
                 }else{
                     Toast toast=Toast.makeText(MainActivity.this,"Wrong credentials",Toast.LENGTH_LONG);

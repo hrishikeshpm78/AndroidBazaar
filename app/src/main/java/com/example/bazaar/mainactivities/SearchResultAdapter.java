@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.example.bazaar.R;
 import com.example.bazaar.pojos.product.Product;
 
@@ -42,22 +43,26 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull SearchViewHolder searchViewHolder, int i) {
         searchViewHolder.pName.setText(list.get(i).getProductName());
+        searchViewHolder.category.setText(list.get(i).getCategory());
+        Glide.with(searchViewHolder.image.getContext())
+                .load(list.get(i).getProductImage())
+                .into(searchViewHolder.image);
     }
 
     @Override
     public int getItemCount() {
         return list.size();
     }
-    private List<SearchObject> getData()
-    {
-        List<SearchObject> list = new ArrayList<>();
-        SearchObject p=new SearchObject("hihihihihihihih");
-        list.add(p);
-        list.add(p);
-        list.add(p);
-        list.add(p);
-        list.add(p);
-        list.add(p);
-        return list;
-    }
+//    private List<SearchObject> getData()
+//    {
+//        List<SearchObject> list = new ArrayList<>();
+//        SearchObject p=new SearchObject("hihihihihihihih");
+//        list.add(p);
+//        list.add(p);
+//        list.add(p);
+//        list.add(p);
+//        list.add(p);
+//        list.add(p);
+//        return list;
+//    }
 }

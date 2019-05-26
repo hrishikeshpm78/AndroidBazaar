@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.bazaar.R;
-import com.example.bazaar.mainactivities.ApiInterface;
 import com.example.bazaar.mainactivities.api.Api;
 import com.example.bazaar.mainactivities.api.ApiInterfaceProduct;
 import com.example.bazaar.pojos.product.Product;

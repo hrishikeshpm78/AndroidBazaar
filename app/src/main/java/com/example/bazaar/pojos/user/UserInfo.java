@@ -7,10 +7,10 @@ import com.google.gson.annotations.SerializedName;
 public class UserInfo{
 
 	@SerializedName("uid")
-	private Object uid;
+	private int uid;
 
 	@SerializedName("password")
-	private Object password;
+	private String password;
 
 	@SerializedName("uname")
 	private String uname;
@@ -21,19 +21,22 @@ public class UserInfo{
 	@SerializedName("email")
 	private String email;
 
-	public void setUid(Object uid){
+	@SerializedName("phoneno")
+	private Object phoneno;
+
+	public void setUid(int uid){
 		this.uid = uid;
 	}
 
-	public Object getUid(){
+	public int getUid(){
 		return uid;
 	}
 
-	public void setPassword(Object password){
+	public void setPassword(String password){
 		this.password = password;
 	}
 
-	public Object getPassword(){
+	public String getPassword(){
 		return password;
 	}
 
@@ -61,6 +64,14 @@ public class UserInfo{
 		return email;
 	}
 
+	public void setPhoneno(Object phoneno){
+		this.phoneno = phoneno;
+	}
+
+	public Object getPhoneno(){
+		return phoneno;
+	}
+
 	@Override
  	public String toString(){
 		return 
@@ -70,6 +81,7 @@ public class UserInfo{
 			",uname = '" + uname + '\'' + 
 			",name = '" + name + '\'' + 
 			",email = '" + email + '\'' + 
+			",phoneno = '" + phoneno + '\'' + 
 			"}";
 		}
 }

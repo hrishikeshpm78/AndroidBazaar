@@ -5,16 +5,18 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.bazaar.R;
-import com.example.bazaar.mainactivities.ApiInterface;
 import com.example.bazaar.mainactivities.api.Api;
 import com.example.bazaar.mainactivities.api.ApiInterfaceProduct;
 import com.example.bazaar.pojos.product.Product;
@@ -29,20 +31,24 @@ public class FirstFragment extends Fragment  {
     View myView;
     ApiInterfaceProduct apiInterface;
     List<Product> products;
+    private EditText searchKey;
+    private ImageView searchButton;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         myView =inflater.inflate(R.layout.first_layout,container,false);
+
+
         final TextView P1=(TextView) myView.findViewById(R.id.p1);
-        P1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager fragmentManager=getFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.content_frame,new ProductDetails())
-                        .commit();
-            }
-        });
+//        P1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                FragmentManager fragmentManager=getFragmentManager();
+//                fragmentManager.beginTransaction()
+//                        .replace(R.id.content_frame,new ProductDetails())
+//                        .commit();
+//            }
+//        });
         final TextView P2=(TextView) myView.findViewById(R.id.p2);
         final TextView P3=(TextView) myView.findViewById(R.id.p3);
         final TextView P4=(TextView) myView.findViewById(R.id.p4);
@@ -193,4 +199,5 @@ public class FirstFragment extends Fragment  {
         });
         return myView;
     }
+
 }

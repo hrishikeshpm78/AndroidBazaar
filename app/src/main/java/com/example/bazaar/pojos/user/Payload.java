@@ -4,14 +4,17 @@ import java.util.List;
 //import javax.annotation.Generated;
 import com.google.gson.annotations.SerializedName;
 
-//@Generated("com.robohorseorse.robopojogenerator")
+//@Generated("com.robohorse.robopojogenerator")
 public class Payload{
 
 	@SerializedName("userInfo")
 	private UserInfo userInfo;
 
+	@SerializedName("addressList")
+	private List<Object> addressList;
+
 	@SerializedName("orderHistory")
-	private List<OrderHistoryItem> orderHistory;
+	private List<Object> orderHistory;
 
 	public void setUserInfo(UserInfo userInfo){
 		this.userInfo = userInfo;
@@ -21,11 +24,19 @@ public class Payload{
 		return userInfo;
 	}
 
-	public void setOrderHistory(List<OrderHistoryItem> orderHistory){
+	public void setAddressList(List<Object> addressList){
+		this.addressList = addressList;
+	}
+
+	public List<Object> getAddressList(){
+		return addressList;
+	}
+
+	public void setOrderHistory(List<Object> orderHistory){
 		this.orderHistory = orderHistory;
 	}
 
-	public List<OrderHistoryItem> getOrderHistory(){
+	public List<Object> getOrderHistory(){
 		return orderHistory;
 	}
 
@@ -34,6 +45,7 @@ public class Payload{
 		return 
 			"Payload{" + 
 			"userInfo = '" + userInfo + '\'' + 
+			",addressList = '" + addressList + '\'' + 
 			",orderHistory = '" + orderHistory + '\'' + 
 			"}";
 		}

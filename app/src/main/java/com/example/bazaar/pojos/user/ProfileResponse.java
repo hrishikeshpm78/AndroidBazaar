@@ -9,6 +9,9 @@ public class ProfileResponse{
 	@SerializedName("payload")
 	private Payload payload;
 
+	@SerializedName("accesstoken")
+	private Object accesstoken;
+
 	@SerializedName("status")
 	private String status;
 
@@ -18,6 +21,14 @@ public class ProfileResponse{
 
 	public Payload getPayload(){
 		return payload;
+	}
+
+	public void setAccesstoken(Object accesstoken){
+		this.accesstoken = accesstoken;
+	}
+
+	public Object getAccesstoken(){
+		return accesstoken;
 	}
 
 	public void setStatus(String status){
@@ -33,6 +44,7 @@ public class ProfileResponse{
 		return 
 			"ProfileResponse{" + 
 			"payload = '" + payload + '\'' + 
+			",accesstoken = '" + accesstoken + '\'' + 
 			",status = '" + status + '\'' + 
 			"}";
 		}

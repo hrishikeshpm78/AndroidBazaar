@@ -25,4 +25,5 @@ public class OrderViewHolder extends RecyclerView.ViewHolder {
         payment=(TextView) itemView.findViewById(R.id.payment);
 
     }
+
 }

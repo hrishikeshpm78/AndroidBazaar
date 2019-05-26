@@ -6,7 +6,9 @@ import android.content.SharedPreferences;
 import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
@@ -18,6 +20,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -74,17 +77,28 @@ public class Home extends AppCompatActivity
                 startActivity(intent);
             }
         });
-        ImageView searchbtn=(ImageView) findViewById(R.id.search_button2);
-        final FragmentManager fragmentManager2 = getSupportFragmentManager();
-        searchbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                fragmentManager2.beginTransaction()
-                        .replace(R.id.content_frame, new SearchFragment())
-                        .commit();
-            }
-        });
+        final ImageView searchButton=(ImageView) findViewById(R.id.search_button2);
+        final EditText searchKey=(EditText) findViewById(R.id.search_value);
+        if(searchButton!=null)
+            searchButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String searchval=searchKey.getText().toString();
+                    if(searchval!=null){
+                        Log.e("search","value not null");
+                    }
+                    Fragment fr=new SearchFragment();
+                    FragmentManager fm=getSupportFragmentManager();
+                    FragmentTransaction ft=fm.beginTransaction();
+
+                    Bundle args = new Bundle();
+                    args.putString("searchKey", searchval);
+                    fr.setArguments(args);
+                    ft.replace(R.id.content_frame, fr);
+                    ft.commit();
+                }
+            });
 
 
     }
