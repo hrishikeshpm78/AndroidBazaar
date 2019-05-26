@@ -43,7 +43,7 @@ public class CartPageAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
 
         recyclerViewHolder.pName.setText(list.get(position).getName());
 
-        
+
 
         //recyclerViewHolder.examDate.setText(list.get(position).date);
     }

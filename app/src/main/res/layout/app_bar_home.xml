@@ -27,6 +27,9 @@
                 android:layout_height="30dp"
                 android:id="@+id/search_value"
                 android:background="#FCFCFC"
+                android:lines="1"
+                android:maxLines="1"
+                android:minLines="1"
                 android:textColor="@color/colorPrimaryDark"
                 android:hint="Enter the item"
 
@@ -42,14 +45,6 @@
                 android:layout_width="100px"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/cart"
-                />
-            <TextView
-                android:id="@+id/noOfCart"
-                android:layout_width="20dp"
-                android:textSize="20sp"
-                android:layout_height="wrap_content"
-                android:text="0"
-
                 />
         </android.support.v7.widget.Toolbar>
 

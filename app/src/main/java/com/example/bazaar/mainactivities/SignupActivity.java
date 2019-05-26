@@ -94,6 +94,9 @@ public class SignupActivity extends AppCompatActivity {
 
 
         Intent intent=new Intent(SignupActivity.this,Home.class);
+        Bundle bundle=new Bundle();
+        bundle.putString("Source","signup_activity");
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 }

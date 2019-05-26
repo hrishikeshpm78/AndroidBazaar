@@ -37,14 +37,25 @@ public class Home extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-//        Bundle bundle=getIntent().getExtras();
-//        uName =bundle.getString("UserName");
-//        TextView uname=findViewById(R.id.uName);
-//        uname.setText("Hi "+uName);
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.content_frame, new FirstFragment())
-                .commit();
+        Intent intent=getIntent();
+        Bundle b=getIntent().getExtras();
+        String s1=b.getString("Source","");
+        Log.e("HIIIII",s1);
+        if(s1.equals("search")){
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.content_frame, new SearchFragment())
+                    .commit();
+        }else{
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.content_frame, new FirstFragment())
+                    .commit();
+
+        }
+
+
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -86,6 +97,11 @@ public class Home extends AppCompatActivity
         } else {
             if (doubleBackToExitPressedOnce) {
                 super.onBackPressed();
+//                int pid = android.os.Process.myPid();
+//                android.os.Process.killProcess(pid);
+                Intent intent=new Intent(Home.this,MainActivity.class);
+                startActivity(intent);
+
                 return;
             }
 

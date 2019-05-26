@@ -19,6 +19,9 @@ public class FinalPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(FinalPage.this,Home.class);
+                Bundle bundle=new Bundle();
+                bundle.putString("Source","finalpage");
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });

@@ -26,23 +26,23 @@ public class ProfilePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_page);
 
-        Call<ProfileResponse> call3=apiInterface.profile();
-
-        call3.enqueue(new Callback<ProfileResponse>() {
-            @Override
-            public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
-                ProfileResponse responseFromUser;
-                responseFromUser=response.body();
-                Log.e("hii", responseFromUser.getStatus());
-                Payload p=responseFromUser.getPayload();
-              UserInfo u= p.getUserInfo();
-              Log.e("hii",u.getName());
-            }
-
-            @Override
-            public void onFailure(Call<ProfileResponse> call, Throwable t) {
-                Log.e("failll","failure");
-            }
-        });
+//        Call<ProfileResponse> call3=apiInterface.profile();
+//
+//        call3.enqueue(new Callback<ProfileResponse>() {
+//            @Override
+//            public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
+//                ProfileResponse responseFromUser;
+//                responseFromUser=response.body();
+//                Log.e("hii", responseFromUser.getStatus());
+//                Payload p=responseFromUser.getPayload();
+//              UserInfo u= p.getUserInfo();
+//              Log.e("hii",u.getName());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ProfileResponse> call, Throwable t) {
+//                Log.e("failll","failure");
+//            }
+//        });
     }
 }

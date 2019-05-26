@@ -1,5 +1,6 @@
 package com.example.bazaar.mainactivities.homefragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -7,16 +8,21 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.bazaar.R;
+import com.example.bazaar.mainactivities.CartPage;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDetails extends Fragment {
     View myView;
+    private Button addToCartBtn;
+    private Button buyNowBtn;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -51,10 +57,34 @@ public class ProductDetails extends Fragment {
             merchLayout.addView(textView);
         }
 
+        addToCartBtn=(Button) myView.findViewById(R.id.pd_addToCart);
+        buyNowBtn=(Button) myView.findViewById(R.id.pd_buyNow);
+
+        addToCartBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addToCart();
+            }
+        });
+        buyNowBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buyNow();
+            }
+        });
         return myView;
     }
-    //        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-//        TextView t = new TextView();
-//        LinearLayout linearLayout = new LinearLayout();
-//        linearLayout.set
+
+    private void buyNow() {
+        //add the item to cart and go to cart page
+        Intent intent=new Intent(getContext(), CartPage.class);
+        startActivity(intent);
+    }
+
+    private void addToCart() {
+                // integrate with  cart here.
+        Toast toast=Toast.makeText(getContext()," item added to cart",Toast.LENGTH_LONG);
+        toast.show();
+    }
+
 }

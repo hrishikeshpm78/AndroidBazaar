@@ -70,6 +70,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(MainActivity.this,Home.class);
+                Bundle bundle=new Bundle();
+                bundle.putString("Source","main_activity");
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
