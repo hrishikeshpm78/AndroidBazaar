@@ -43,6 +43,7 @@ public class FinalPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_final_page);
         button=findViewById(R.id.continueShopping);
+        list = new ArrayList<>();
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,9 +63,14 @@ public class FinalPage extends AppCompatActivity {
                 cartResponse=response.body();
                 payload=cartResponse.getPayload();
 
+                Log.e("cartstatusfp",cartResponse.getStatus());
+                Log.e("payload",payload.toString());
+
                 String response2=cartResponse.getStatus();
                 if(response2.equals("success")){
-                    list=payload.getList();
+                    list.addAll(payload.getList());
+                    Log.e("list:",Integer.toString(list.size()));
+                    buyItems();
                 }
             }
 
@@ -74,7 +80,14 @@ public class FinalPage extends AppCompatActivity {
             }
         });
 
+
+    }
+
+
+    public void buyItems(){
         cartItems=new ArrayList<CartDTO>();
+
+
         for (ListItem item:list) {
             cartItems.add(new CartDTO(item.getImgurl(),
                     item.getQuantity(),
@@ -85,10 +98,9 @@ public class FinalPage extends AppCompatActivity {
                     item.getUserId(),
                     MainActivity.accesstoken));
         }
-
+        Log.e("cartItems:",Integer.toString(cartItems.size()));
 
         OrderDTO order=new OrderDTO();
-       // SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         order.setOrderdate(null);
         order.setUserid(0002);
@@ -101,10 +113,15 @@ public class FinalPage extends AppCompatActivity {
         order.setShippingaddress(address);
         order.setAccesstoken(MainActivity.accesstoken);
 
-        CartDTO[] cart11=new CartDTO[cartItems.size()];
-        cart11=(CartDTO[]) cartItems.toArray();
-
-        order.setProductlist(cart11);
+        CartDTO[] cart=new CartDTO[cartItems.size()];
+        Log.e("cartdtoarray:",Integer.toString(cart.length));
+        int i=0;
+        for( CartDTO cartItem:cartItems){
+            cart[i]=cartItem;
+            i++;
+        }
+        Log.e("cartdtoarray2:",Integer.toString(cart.length));
+        order.setProductlist(cart);
         Call<ResponseFromUser> call=MainActivity.apiInterface.buyNow(order);
         call.enqueue(new Callback<ResponseFromUser>() {
             @Override

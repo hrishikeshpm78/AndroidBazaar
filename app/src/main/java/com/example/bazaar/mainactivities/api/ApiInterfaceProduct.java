@@ -16,7 +16,7 @@ public interface ApiInterfaceProduct {
     Call<List<Product>> getSubcategorymobile();
     @GET("product/getsubcategory?subcategory=laptop")
     Call<List<Product>> getSubcategorylaptop();
-    @GET("product/getsubcategory?subcategory=faishon")
+    @GET("product/getsubcategory?subcategory=fashion")
     Call<List<Product>> getSubcategoryfaishon();
     @GET("product/getproduct")
     Call<Product>    getProduct(@Query("id") String id);
