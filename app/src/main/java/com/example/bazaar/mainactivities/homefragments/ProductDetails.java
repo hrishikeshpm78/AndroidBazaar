@@ -47,6 +47,7 @@ public class ProductDetails extends Fragment {
     List<MerchantResponse> merchantResponse;
     ArrayList<String> productDetails = new ArrayList<String>();
     ArrayList<String> merchant = new ArrayList<String>();
+    String pid;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -56,44 +57,55 @@ public class ProductDetails extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        String pid = getArguments().getString("PID");
+        pid = getArguments().getString("PID");
 
-        Api api=new Api("http:172.16.20.53:8080");
-        apiInterface=api.getclient().create(ApiInterfaceProduct.class);
-        Call<Product> call=apiInterface.getProduct(pid);
-        Api apiMerchant=new Api("http:172.16.20.24:8080");
+
+
+        Api apiMerchant=new Api("http://172.16.20.24:8080");
         apiInterfaceMerchant=apiMerchant.getclient().create(ApiInterfaceMerchant.class);
-        Call<List<MerchantResponse>> callMerchant=apiInterfaceMerchant.getOrder(5);
+        Call<List<MerchantResponse>> callMerchant=apiInterfaceMerchant.getOrder(Integer.parseInt(pid));
+        Log.e("PID:::",pid);
         callMerchant.enqueue(new Callback<List<MerchantResponse>>() {
+            LinearLayout merchLayout = (LinearLayout) myView.findViewById(R.id.pd_merchants);
             @Override
             public void onResponse(Call<List<MerchantResponse>> callMerchant, Response<List<MerchantResponse>> response) {
                 merchantResponse=response.body();
                 Log.e("mer",merchantResponse.get(0).toString());
+//                Log.e("mer",merchantResponse.get(1).toString());
                 ListIterator<MerchantResponse> merchantIterator = merchantResponse.listIterator();
-                while (merchantIterator.hasNext()){
-                    merchant.add(merchantIterator.next().getMname());
+
+                for(MerchantResponse merchresp:merchantResponse)
+                {
+                    System.out.println(merchresp.getPrice());
+                    merchant.add(merchresp.getMname()+" Rs-"+merchresp.getPrice());
                 }
 
-                System.out.println(merchant);
+
+                for (String text :
+                        merchant) {
+                    TextView textView = new TextView(getContext());
+                    textView.setText(text);
+                    textView.setTextSize(30);
+                    textView.setGravity(View.TEXT_ALIGNMENT_CENTER);
+
+                    merchLayout.addView(textView);
+                }
             }
 
             @Override
             public void onFailure(Call<List<MerchantResponse>> callMerchant, Throwable t) {
-
+                Log.e("server_merchant","failure");
             }
         });
+
+        Api api=new Api("http://172.16.20.53:8080");
+        apiInterface=api.getclient().create(ApiInterfaceProduct.class);
+        Call<Product> call=apiInterface.getProduct(pid);
         call.enqueue(new Callback<Product>() {
             @Override
             public void onResponse(Call<Product> call, Response<Product> response) {
                 product = response.body();
 
-
-
-
-                productDetails.add(product.getName());
-                productDetails.add(product.getCompany());
-                productDetails.add(product.getSubCategory());
-                productDetails.add(Double.toString(product.getRating()));
                 Map<String,String> productAttributes;
                 Set<String> keySet= product.getProductAttribute().keySet();
                 for(Object key:keySet)
@@ -109,20 +121,15 @@ public class ProductDetails extends Fragment {
                 final TextView P4=(TextView) myView.findViewById(R.id.pd_rating);
                 final ImageView Img=(ImageView) myView.findViewById(R.id.pd_image);
                 P1.setText(product.getName());
-                P2.setText(product.getCompany());
-                P3.setText(Double.toString(product.getRating()));
-                P4.setText(product.getSubCategory());
+                P2.setText("Company -"+product.getCompany());
+                P3.setText("Rating -"+Double.toString(product.getRating()));
+                P4.setText("Category-"+product.getSubCategory());
                 Glide.with(Img.getContext())
                         .load(product.getImageUrl().getJsonMember1())
                         .into(Img);
 
-
-
-
-
-
                 LinearLayout attrLayout = (LinearLayout) myView.findViewById(R.id.pd_attributes);
-                LinearLayout merchLayout = (LinearLayout) myView.findViewById(R.id.pd_merchants);
+
 
 
                 Log.d("detailofproduct",productDetails.toString());
@@ -132,19 +139,10 @@ public class ProductDetails extends Fragment {
                     textView.setTextSize(30);
                     Log.d("afojfklajds",text);
 
-                    //textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                    merchLayout.addView(textView);
-                }
-
-                for (String text :
-                        merchant) {
-                    TextView textView = new TextView(getContext());
-                    textView.setText(text);
-                    textView.setTextSize(30);
                     textView.setGravity(View.TEXT_ALIGNMENT_CENTER);
-
                     attrLayout.addView(textView);
                 }
+
 
                 addToCartBtn = (Button) myView.findViewById(R.id.pd_addToCart);
                 buyNowBtn = (Button) myView.findViewById(R.id.pd_buyNow);
@@ -185,6 +183,31 @@ public class ProductDetails extends Fragment {
 
     private void addToCart() {
         // integrate with  cart here.
+        CartDTO cart1=new CartDTO();
+        cart1.setUserId(0);
+        cart1.setProductname(product.getName());
+        cart1.setProductId(Integer.parseInt(pid));
+        cart1.setImgurl(product.getImageUrl().toString());
+        cart1.setAccesstoken(MainActivity.accesstoken);
+        cart1.setQuantity(1);
+        cart1.setMerchantId(merchantResponse.get(0).getMId());
+        cart1.setPrice(merchantResponse.get(0).getPrice());
+
+        Call<CartResponse> call=MainActivity.apiInterface.addToCart(cart1);
+        call.enqueue(new Callback<CartResponse>() {
+            @Override
+            public void onResponse(Call<CartResponse> call, Response<CartResponse> response) {
+                CartResponse response2=response.body();
+                Log.e("add_to_cart",response2.getStatus());
+            }
+
+            @Override
+            public void onFailure(Call<CartResponse> call, Throwable t) {
+
+            }
+        });
+
+
         Toast toast = Toast.makeText(getContext(), " item added to cart", Toast.LENGTH_LONG);
         toast.show();
     }

@@ -17,11 +17,13 @@ public class CheckoutPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout_page);
-        Spinner mySpinner= (Spinner)findViewById(R.id.spinner1);
-        ArrayAdapter<String> myAdapter=new ArrayAdapter<String>(CheckoutPage.this,
-                R.layout.support_simple_spinner_dropdown_item,getResources().getStringArray(R.array.addresses));
-        myAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        mySpinner.setAdapter(myAdapter);
+//        Spinner mySpinner= (Spinner)findViewById(R.id.spinner1);
+//        ArrayAdapter<String> myAdapter=new ArrayAdapter<String>(CheckoutPage.this,
+//                R.layout.support_simple_spinner_dropdown_item,getResources().getStringArray(R.array.addresses));
+//        myAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+//        mySpinner.setAdapter(myAdapter);
+
+        EditText checkoutAddress =(EditText) findViewById(R.id.checkoutAddress);
         EditText emailfield=(EditText) findViewById(R.id.checkoutEmail);
         final String email=emailfield.getText().toString();
 
@@ -30,7 +32,14 @@ public class CheckoutPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(CheckoutPage.this,FinalPage.class);
-                intent.putExtra("mailfield",email);
+
+                EditText email=(EditText) findViewById(R.id.checkoutEmail);
+                EditText address=(EditText)findViewById(R.id.checkoutAddress);
+                String emailText=email.getText().toString();
+                String addressText=address.getText().toString();
+                intent.putExtra("email",emailText);
+                intent.putExtra("address",addressText);
+                //intent.putExtra("mailfield",email);
                 startActivity(intent);
             }
         });

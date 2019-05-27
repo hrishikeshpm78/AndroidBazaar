@@ -19,4 +19,5 @@ public interface ApiInterfaceOrder {
     Call<List<Order>> getMerchantOrder(@Query("id") int i);
     @GET("/userorder/")
     Call<List<Order>> getUserOrder(@Query("id") int i);
+
 }

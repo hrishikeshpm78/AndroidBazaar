@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                 if(responseFromUser.getStatus().equals("success")){
                     Intent intent = new Intent(MainActivity.this, Home.class);
                     if(userName!=null){
-                        intent.putExtra("UserName",R.id.userName);
+                        intent.putExtra("UserName",userName.getText().toString());
                     }
                     accesstoken=responseFromUser.getAccesstoken();
                     Log.e("login",accesstoken);

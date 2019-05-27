@@ -43,12 +43,6 @@ public class SearchFragment extends Fragment  {
 
         searchKey = getArguments().getString("searchKey");
         Log.e("search",searchKey);
-        return myView;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
         getRetrofitUser retrofitUser=new getRetrofitUser("http://172.16.20.70:8080");
         ApiInterfaceForSearch apiInterfaceForSearch=retrofitUser.getclient().create(ApiInterfaceForSearch.class);
         if(searchKey!=null) {
@@ -57,11 +51,13 @@ public class SearchFragment extends Fragment  {
                 @Override
                 public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
                     SearchResponse searchResponseObject;
+
                     searchResponseObject = response.body();
+                    Log.e("searchresponse", searchResponseObject.getStatus());
                     Payload payload = searchResponseObject.getPayload();
 
                     String status =searchResponseObject.getStatus();
-                    Log.e("searchresponse", searchResponseObject.getStatus());
+
 
                     if(status.equals("success")) {
                         List<ProdlistItem> productList = payload.getProdlist();
@@ -105,12 +101,9 @@ public class SearchFragment extends Fragment  {
         }
 
 
-
-
-
-
-        super.onViewCreated(view, savedInstanceState);
+        return myView;
     }
+
 
     private void goToSortPage() {
 

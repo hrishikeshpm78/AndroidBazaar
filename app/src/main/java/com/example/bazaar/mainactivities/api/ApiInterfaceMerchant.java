@@ -10,5 +10,5 @@ import retrofit2.http.Query;
 
 public interface ApiInterfaceMerchant {
     @GET("/merchant/getmerchants")
-    Call<List<MerchantResponse>> getOrder(@Query("pId") int i);
+    Call<List<MerchantResponse>> getOrder(@Query("pId") int pId);
 }

@@ -28,7 +28,10 @@ public class MerchantResponse{
 	private int stock;
 
 	@SerializedName("productRating")
-	private int productRating;
+	private double productRating;
+
+	public MerchantResponse() {
+	}
 
 	public void setNoOfProductsSold(int noOfProductsSold){
 		this.noOfProductsSold = noOfProductsSold;
@@ -86,11 +89,11 @@ public class MerchantResponse{
 		return stock;
 	}
 
-	public void setProductRating(int productRating){
+	public void setProductRating(double productRating){
 		this.productRating = productRating;
 	}
 
-	public int getProductRating(){
+	public double getProductRating(){
 		return productRating;
 	}
 

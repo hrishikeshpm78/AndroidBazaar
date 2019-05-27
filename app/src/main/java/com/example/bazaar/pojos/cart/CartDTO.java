@@ -36,6 +36,20 @@ public class CartDTO {
         this.accesstoken = accesstoken;
     }
 
+    public CartDTO(String imgurl, int quantity, int productId, int merchantId, int price, String productname, int userId, Object accesstoken) {
+        this.imgurl = imgurl;
+        this.quantity = quantity;
+        this.productId = productId;
+        this.merchantId = merchantId;
+        this.price = price;
+        this.productname = productname;
+        this.userId = userId;
+        this.accesstoken = accesstoken;
+    }
+
+    public CartDTO() {
+    }
+
     public void setImgurl(String imgurl){
         this.imgurl = imgurl;
     }

@@ -2,6 +2,7 @@ package com.example.bazaar.mainactivities.api;
 
 import com.example.bazaar.pojos.cart.CartDTO;
 import com.example.bazaar.pojos.cart.CartResponse;
+import com.example.bazaar.pojos.order.OrderDTO;
 import com.example.bazaar.pojos.user.LoginRequest;
 import com.example.bazaar.pojos.user.ProfileResponse;
 import com.example.bazaar.pojos.user.ResponseFromUser;
@@ -33,4 +34,7 @@ public interface ApiInterfaceForUser
 
     @POST("/user/cart/add")
     Call<CartResponse> addToCart(@Body CartDTO myCart);
+
+    @POST("/user/order/buy")
+    Call<ResponseFromUser> buyNow(@Body OrderDTO myOrder);
 }

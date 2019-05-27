@@ -41,23 +41,25 @@ public class Home extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Intent intent=getIntent();
-        Bundle b=getIntent().getExtras();
-        String s1=b.getString("Source","");
-        Log.e("HIIIII",s1);
-        if(s1.equals("search")){
+        Intent intent = getIntent();
+        Bundle b = getIntent().getExtras();
+        String s1 = b.getString("Source", "");
+        String uname = b.getString("UserName", "");
+        Log.e("HIIIII", s1);
+        if (s1.equals("search")) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame, new SearchFragment())
+                    .addToBackStack(null)
                     .commit();
-        }else{
+        } else {
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame, new FirstFragment())
+                    .addToBackStack(null)
                     .commit();
 
         }
-
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -79,19 +81,19 @@ public class Home extends AppCompatActivity
             }
         });
 
-        final ImageView searchButton=(ImageView) findViewById(R.id.search_button2);
-        final EditText searchKey=(EditText) findViewById(R.id.search_value);
-        if(searchButton!=null)
+        final ImageView searchButton = (ImageView) findViewById(R.id.search_button2);
+        final EditText searchKey = (EditText) findViewById(R.id.search_value);
+        if (searchButton != null)
             searchButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String searchval=searchKey.getText().toString();
-                    if(searchval!=null){
-                        Log.e("search","value not null");
+                    String searchval = searchKey.getText().toString();
+                    if (searchval != null) {
+                        Log.e("search", "value not null");
                     }
-                    Fragment fr=new SearchFragment();
-                    FragmentManager fm=getSupportFragmentManager();
-                    FragmentTransaction ft=fm.beginTransaction();
+                    Fragment fr = new SearchFragment();
+                    FragmentManager fm = getSupportFragmentManager();
+                    FragmentTransaction ft = fm.beginTransaction();
 
                     Bundle args = new Bundle();
                     args.putString("searchKey", searchval);
@@ -100,9 +102,10 @@ public class Home extends AppCompatActivity
                     ft.commit();
                 }
             });
-
+        ((TextView) navigationView.getHeaderView(0).findViewById(R.id.nav_uName)).setText( "Hi "+uname);
 
     }
+
     @Override
     public void onBackPressed() {
         int count = getSupportFragmentManager().getBackStackEntryCount();
@@ -119,9 +122,9 @@ public class Home extends AppCompatActivity
     @Override
     protected void onResume() {
 
-        TextView user=(TextView) findViewById(R.id.nav_uName);
-        if(user!=null){
-            user.setText("Hi "+MainActivity.appUser);
+        TextView user = (TextView) findViewById(R.id.nav_uName);
+        if (user != null) {
+            user.setText("Hi " + MainActivity.appUser);
         }
         super.onResume();
     }
@@ -165,24 +168,27 @@ public class Home extends AppCompatActivity
             // Handle the camera action
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame, new FirstFragment())
+                    .addToBackStack(null)
                     .commit();
 
         } else if (id == R.id.nav_second_layout) {
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame, new SecondFragment())
+                    .addToBackStack(null)
                     .commit();
 
         } else if (id == R.id.nav_third_layout) {
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame, new ThirdFragment())
+                    .addToBackStack(null)
                     .commit();
 
         } else if (id == R.id.nav_my_profile) {
-            if(MainActivity.isGuest==false){
+            if (MainActivity.isGuest == false) {
                 Intent intent = new Intent(Home.this, ProfilePage.class);
                 startActivity(intent);
-            }else{
-                Toast toast=Toast.makeText(Home.this," Please signin/signup to access Profile Page",Toast.LENGTH_LONG);
+            } else {
+                Toast toast = Toast.makeText(Home.this, " Please signin/signup to access Profile Page", Toast.LENGTH_LONG);
                 toast.show();
             }
 
