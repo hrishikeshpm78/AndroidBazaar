@@ -49,16 +49,13 @@ public class SearchFragment extends Fragment  {
             Call<SearchResponse> call = apiInterfaceForSearch.getProducts(searchKey);
             call.enqueue(new Callback<SearchResponse>() {
                 @Override
-                public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
+                public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) { 
                     SearchResponse searchResponseObject;
 
                     searchResponseObject = response.body();
                     Log.e("searchresponse", searchResponseObject.getStatus());
                     Payload payload = searchResponseObject.getPayload();
-
                     String status =searchResponseObject.getStatus();
-
-
                     if(status.equals("success")) {
                         List<ProdlistItem> productList = payload.getProdlist();
 //                        Log.e("searchresponse", productList.get(0).toString());
