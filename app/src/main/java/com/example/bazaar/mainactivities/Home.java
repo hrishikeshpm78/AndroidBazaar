@@ -22,6 +22,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bazaar.R;
@@ -102,10 +103,27 @@ public class Home extends AppCompatActivity
 
 
     }
-
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        int count = getSupportFragmentManager().getBackStackEntryCount();
+
+        if (count == 0) {
+            super.onBackPressed();
+            //additional code
+        } else {
+            getSupportFragmentManager().popBackStack();
+        }
+//        super.onBackPressed();
+    }
+
+    @Override
+    protected void onResume() {
+
+        TextView user=(TextView) findViewById(R.id.nav_uName);
+        if(user!=null){
+            user.setText("Hi "+MainActivity.appUser);
+        }
+        super.onResume();
     }
 
     @Override
@@ -160,8 +178,15 @@ public class Home extends AppCompatActivity
                     .commit();
 
         } else if (id == R.id.nav_my_profile) {
-            Intent intent = new Intent(Home.this, ProfilePage.class);
-            startActivity(intent);
+            if(MainActivity.isGuest==false){
+                Intent intent = new Intent(Home.this, ProfilePage.class);
+                startActivity(intent);
+            }else{
+                Toast toast=Toast.makeText(Home.this," Please signin/signup to access Profile Page",Toast.LENGTH_LONG);
+                toast.show();
+            }
+
+
         } else if (id == R.id.nav_logout) {
             SharedPreferences sharedpreferences = getSharedPreferences(MainActivity.MyPREFERENCES, 0);
             SharedPreferences.Editor editor = sharedpreferences.edit();
@@ -181,4 +206,5 @@ public class Home extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }

@@ -42,17 +42,25 @@ public class ProductDetails extends Fragment {
     private Button addToCartBtn;
     private Button buyNowBtn;
     ApiInterfaceProduct apiInterface;
+    ApiInterfaceMerchant apiInterfaceMerchant;
     Product product;
-    private CartResponse cartResponse;
-    private ApiInterfaceMerchant apiInterfaceMerchant;
-    private List<MerchantResponse> merchantResponse;
-    private TextView pdPrice;
+    List<MerchantResponse> merchantResponse;
+    ArrayList<String> productDetails = new ArrayList<String>();
+    ArrayList<String> merchant = new ArrayList<String>();
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         myView =inflater.inflate(R.layout.product_details,container,false);
+        return myView;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         String pid = getArguments().getString("PID");
 
+        Api api=new Api("http:172.16.20.53:8080");
+        apiInterface=api.getclient().create(ApiInterfaceProduct.class);
+        Call<Product> call=apiInterface.getProduct(pid);
         Api apiMerchant=new Api("http:172.16.20.24:8080");
         apiInterfaceMerchant=apiMerchant.getclient().create(ApiInterfaceMerchant.class);
         Call<List<MerchantResponse>> callMerchant=apiInterfaceMerchant.getOrder(5);
@@ -61,8 +69,12 @@ public class ProductDetails extends Fragment {
             public void onResponse(Call<List<MerchantResponse>> callMerchant, Response<List<MerchantResponse>> response) {
                 merchantResponse=response.body();
                 Log.e("mer",merchantResponse.get(0).toString());
+                ListIterator<MerchantResponse> merchantIterator = merchantResponse.listIterator();
+                while (merchantIterator.hasNext()){
+                    merchant.add(merchantIterator.next().getMname());
+                }
 
-
+                System.out.println(merchant);
             }
 
             @Override
@@ -70,59 +82,69 @@ public class ProductDetails extends Fragment {
 
             }
         });
-
-        Api api=new Api("http:172.16.20.53:8080");
-        apiInterface=api.getclient().create(ApiInterfaceProduct.class);
-        Call<Product> call=apiInterface.getProduct(pid);
         call.enqueue(new Callback<Product>() {
             @Override
             public void onResponse(Call<Product> call, Response<Product> response) {
                 product = response.body();
-                System.out.println(product);
-                ArrayList<String> productDetails = new ArrayList<String>();
-                ArrayList<String> merchant = new ArrayList<String>();
+
+
+
+
+                productDetails.add(product.getName());
+                productDetails.add(product.getCompany());
+                productDetails.add(product.getSubCategory());
+                productDetails.add(Double.toString(product.getRating()));
                 Map<String,String> productAttributes;
                 Set<String> keySet= product.getProductAttribute().keySet();
                 for(Object key:keySet)
                 {
-                    productDetails.add("->"+key+":"+product.getProductAttribute().get(key));
+                    productDetails.add(key+"   "+product.getProductAttribute().get(key));
                 }
+
+                Log.d("productafjiad", productDetails.toString());
+
                 final TextView P1=(TextView) myView.findViewById(R.id.pd_name);
                 final TextView P2=(TextView) myView.findViewById(R.id.pd_category);
                 final TextView P3=(TextView) myView.findViewById(R.id.pd_price);
                 final TextView P4=(TextView) myView.findViewById(R.id.pd_rating);
                 final ImageView Img=(ImageView) myView.findViewById(R.id.pd_image);
-
                 P1.setText(product.getName());
                 P2.setText(product.getCompany());
-                int Price=merchantResponse.get(0).getPrice();
-                P3.setText(product.getSubCategory());
-                P4.setText(Double.toString(product.getRating()));
-
-
+                P3.setText(Double.toString(product.getRating()));
+                P4.setText(product.getSubCategory());
                 Glide.with(Img.getContext())
                         .load(product.getImageUrl().getJsonMember1())
                         .into(Img);
+
+
+
+
+
+
                 LinearLayout attrLayout = (LinearLayout) myView.findViewById(R.id.pd_attributes);
                 LinearLayout merchLayout = (LinearLayout) myView.findViewById(R.id.pd_merchants);
 
-                for (String text :
-                        productDetails) {
+
+                Log.d("detailofproduct",productDetails.toString());
+                for (String text : productDetails) {
                     TextView textView = new TextView(getContext());
                     textView.setText(text);
                     textView.setTextSize(30);
-                    //   textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                    Log.d("afojfklajds",text);
+
+                    //textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                    merchLayout.addView(textView);
+                }
+
+                for (String text :
+                        merchant) {
+                    TextView textView = new TextView(getContext());
+                    textView.setText(text);
+                    textView.setTextSize(30);
+                    textView.setGravity(View.TEXT_ALIGNMENT_CENTER);
+
                     attrLayout.addView(textView);
                 }
-//                for (String text :
-//                        productDetails) {
-//                    TextView textView = new TextView(getContext());
-//                    textView.setText(text);
-//                    textView.setTextSize(30);
-//                    textView.setGravity(View.TEXT_ALIGNMENT_CENTER);
-//
-//                    merchLayout.addView(textView);
-//                }
 
                 addToCartBtn = (Button) myView.findViewById(R.id.pd_addToCart);
                 buyNowBtn = (Button) myView.findViewById(R.id.pd_buyNow);
@@ -148,7 +170,11 @@ public class ProductDetails extends Fragment {
             }
         });
 
-        return myView;
+
+
+
+
+        super.onViewCreated(view, savedInstanceState);
     }
 
     private void buyNow() {
@@ -158,31 +184,8 @@ public class ProductDetails extends Fragment {
     }
 
     private void addToCart() {
-        CartDTO cart=new CartDTO();
-        cart.setAccesstoken(MainActivity.accesstoken);
-        cart.setImgurl("hsbahsacasxa");
-        cart.setMerchantId(123);
-        cart.setPrice(2222);
-        cart.setProductId(12);
-        cart.setProductname("apex");
-        cart.setUserId(111);
-
-        Call<CartResponse> call=MainActivity.apiInterface.addToCart(cart);
-        call.enqueue(new Callback<CartResponse>() {
-            @Override
-            public void onResponse(Call<CartResponse> call, Response<CartResponse> response) {
-                cartResponse=response.body();
-                Log.e("cart received",cartResponse.getStatus());
-            }
-
-            @Override
-            public void onFailure(Call<CartResponse> call, Throwable t) {
-
-            }
-        });
-
+        // integrate with  cart here.
         Toast toast = Toast.makeText(getContext(), " item added to cart", Toast.LENGTH_LONG);
         toast.show();
     }
 }
-

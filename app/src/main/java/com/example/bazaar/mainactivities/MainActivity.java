@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText userName,password;
     private Button skipButton;
     public static final String MyPREFERENCES = "MyPrefs" ;
+    public static boolean isGuest;
+    public static String appUser;
 
     public static ApiInterfaceForUser apiInterface;
     ResponseFromUser responseFromUser;
@@ -70,9 +72,12 @@ public class MainActivity extends AppCompatActivity {
         skipButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MainActivity.isGuest=true;
+                MainActivity.appUser="Guest";
                 Intent intent=new Intent(MainActivity.this,Home.class);
                 Bundle bundle=new Bundle();
                 bundle.putString("Source","main_activity");
+                bundle.putString("isGuest","true");
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -92,11 +97,11 @@ public class MainActivity extends AppCompatActivity {
         editor.putBoolean("isSignedIn",true);
         editor.apply();
 
-
+        MainActivity.isGuest=false;
         LoginRequest l=new LoginRequest();
         l.setUname(uName);
         l.setPassword(upass);
-
+        MainActivity.appUser=uName;
         getRetrofitUser retrofitObject_user=new getRetrofitUser("http://172.16.20.81:8080");
         apiInterface =retrofitObject_user.getclient().create(ApiInterfaceForUser.class);
         Call<ResponseFromUser> call3=apiInterface.login(l);

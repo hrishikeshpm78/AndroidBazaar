@@ -4,24 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFEB3B"
-    tools:context=".mainactivities.AboutUs">
 
+    tools:context=".mainactivities.AboutUs"
+    >
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="369dp"
-        android:layout_height="wrap_content
-"
-        android:layout_marginStart="8dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:background="#FFEB3B"
         android:text="@string/about_us_value"
         android:textSize="20sp"
-        android:textColor="#3248BD"
+        android:textColor="#535252"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.211"
@@ -38,8 +36,9 @@
         android:layout_marginTop="36dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:textStyle="bold"
         android:text="ABOUT US"
-        android:textColor="#FF5722"
+        android:textColor="#B35032"
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.136"

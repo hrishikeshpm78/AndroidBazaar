@@ -67,6 +67,8 @@ public class SignupActivity extends AppCompatActivity {
     }
     private void signUp(String name,String uName,String email,String password){
 
+        MainActivity.isGuest=false;
+        MainActivity.appUser=uName;
         SignUpForm s=new SignUpForm();
         s.setEmail(email);
         s.setName(name);

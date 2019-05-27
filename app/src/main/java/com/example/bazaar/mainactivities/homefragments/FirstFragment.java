@@ -49,6 +49,7 @@ public class FirstFragment extends Fragment  {
 //                        .commit();
 //            }
 //        });
+
         final TextView P2=(TextView) myView.findViewById(R.id.p2);
         final TextView P3=(TextView) myView.findViewById(R.id.p3);
         final TextView P4=(TextView) myView.findViewById(R.id.p4);
