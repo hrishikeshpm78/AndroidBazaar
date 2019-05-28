@@ -1,5 +1,6 @@
 package com.example.bazaar.mainactivities;
 
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,7 @@ public class SearchViewHolder extends RecyclerView.ViewHolder {
     ImageView image;
     TextView category;
     TextView price;
-
+    CardView card;
 
     SearchViewHolder(View itemView) {
         super(itemView);
@@ -23,6 +24,7 @@ public class SearchViewHolder extends RecyclerView.ViewHolder {
         image = (ImageView) itemView.findViewById(R.id.imagesearch);
         category=(TextView) itemView.findViewById(R.id.search_category);
         price=(TextView) itemView.findViewById(R.id.price_search);
+        card=(CardView) itemView.findViewById(R.id.search_item_view);
     }
 //    public void bind(SearchObject obj){
 //        pName.setText(obj.getProductName());

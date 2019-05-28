@@ -1,16 +1,40 @@
 package com.example.bazaar.mainactivities;
 
+import com.example.bazaar.pojos.cart.CartDTO;
+
 public class CartObject {
     private String imgUrl;
     private String prodName;
     private int prodPrice;
     private int quantity;
 
+    private CartDTO cartItem;
+
+    public CartObject(String imgUrl, String prodName, int prodPrice, int quantity, CartDTO cartItem) {
+        this.imgUrl = imgUrl;
+        this.prodName = prodName;
+        this.prodPrice = prodPrice;
+        this.quantity = quantity;
+        this.cartItem = cartItem;
+    }
+
     public CartObject(String imgUrl, String prodName, int prodPrice, int quantity) {
         this.imgUrl = imgUrl;
         this.prodName = prodName;
         this.prodPrice = prodPrice;
         this.quantity = quantity;
+    }
+
+    public CartObject(CartDTO cartItem) {
+        this.cartItem = cartItem;
+    }
+
+    public CartDTO getCartItem() {
+        return cartItem;
+    }
+
+    public void setCartItem(CartDTO cartItem) {
+        this.cartItem = cartItem;
     }
 
     public String getImgUrl() {

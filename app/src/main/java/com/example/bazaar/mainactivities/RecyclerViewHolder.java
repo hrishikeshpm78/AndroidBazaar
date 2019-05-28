@@ -15,6 +15,7 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
     TextView pPrice;
     TextView quantity;
     View itemView2;
+    Button cartDelete;
     RecyclerViewHolder(View itemView)
     {
 
@@ -24,7 +25,7 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
         image = (ImageView)itemView.findViewById(R.id.imagerec);
         pPrice=(TextView) itemView.findViewById(R.id.prod_price);
         quantity=(TextView) itemView.findViewById(R.id.cart_quantity);
-
+        cartDelete=(Button) itemView.findViewById(R.id.cart_delete);
 
     }
 

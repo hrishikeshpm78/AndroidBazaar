@@ -72,7 +72,12 @@ public class CartPage extends AppCompatActivity {
                         String prodName=item.getProductname();
                         String imageUrl=item.getImgurl();
                         Log.e("imgurl",imageUrl);
-                        CartObject cart=new CartObject(imageUrl,prodName,price,quantity);
+                        CartDTO cartproduct=new CartDTO(
+                                imageUrl,quantity,item.getProductId(),item.getMerchantId(),
+                                item.getPrice(),item.getProductname(),item.getUserId(),
+                                MainActivity.accesstoken
+                        );
+                        CartObject cart=new CartObject(imageUrl,prodName,price,quantity,cartproduct);
                         cartItems.add(cart);
 
                     }

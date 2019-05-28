@@ -39,4 +39,7 @@ public interface ApiInterfaceForUser
 
     @GET("/user/logout")
     Call<ResponseFromUser> logout(@Query("accesstoken")String accesstoken);
+
+    @POST("/user/cart/delete")
+    Call<ResponseFromUser> remFromCart(@Body CartDTO cartdto);
 }
