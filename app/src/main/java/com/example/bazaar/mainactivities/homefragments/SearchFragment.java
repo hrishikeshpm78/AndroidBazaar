@@ -49,7 +49,7 @@ public class SearchFragment extends Fragment  {
             Call<SearchResponse> call = apiInterfaceForSearch.getProducts(searchKey);
             call.enqueue(new Callback<SearchResponse>() {
                 @Override
-                public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) { 
+                public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
                     SearchResponse searchResponseObject;
 
                     searchResponseObject = response.body();
@@ -101,23 +101,21 @@ public class SearchFragment extends Fragment  {
         return myView;
     }
 
-
     private void goToSortPage() {
 
         Intent intent=new Intent(getContext(), SortPage.class);
         startActivity(intent);
     }
-
-    private List<SearchObject> getData()
-    {
-        List<SearchObject> list = new ArrayList<>();
-        SearchObject p=new SearchObject("hihihihihihihih");
-        list.add(p);
-        list.add(p);
-        list.add(p);
-        list.add(p);
-        list.add(p);
-        list.add(p);
-        return list;
-    }
+//    private List<SearchObject> getData()
+//    {
+//        List<SearchObject> list = new ArrayList<>();
+//        SearchObject p=new SearchObject("hihihihihihihih");
+//        list.add(p);
+//        list.add(p);
+//        list.add(p);
+//        list.add(p);
+//        list.add(p);
+//        list.add(p);
+//        return list;
+//    }
 }

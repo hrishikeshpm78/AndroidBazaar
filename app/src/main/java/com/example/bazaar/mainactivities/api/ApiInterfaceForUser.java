@@ -25,7 +25,6 @@ public interface ApiInterfaceForUser
     @POST("/user/login")
     Call<ResponseFromUser > login(@Body LoginRequest form);
 
-
     @GET("/user/profile")
     Call<ProfileResponse> profile(@Query("accesstoken") String token);
 
@@ -37,4 +36,7 @@ public interface ApiInterfaceForUser
 
     @POST("/user/order/buy")
     Call<ResponseFromUser> buyNow(@Body OrderDTO myOrder);
+
+    @GET("/user/logout")
+    Call<ResponseFromUser> logout(@Query("accesstoken")String accesstoken);
 }

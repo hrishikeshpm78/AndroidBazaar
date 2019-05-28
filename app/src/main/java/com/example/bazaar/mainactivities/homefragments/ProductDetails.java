@@ -1,10 +1,13 @@
 package com.example.bazaar.mainactivities.homefragments;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +31,7 @@ import com.example.bazaar.pojos.merchant.MerchantResponse;
 import com.example.bazaar.pojos.product.Product;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
@@ -46,8 +50,15 @@ public class ProductDetails extends Fragment {
     Product product;
     List<MerchantResponse> merchantResponse;
     ArrayList<String> productDetails = new ArrayList<String>();
-    ArrayList<String> merchant = new ArrayList<String>();
     String pid;
+    View itemView2;
+    Button increase;
+    Button decrease;
+    TextView quantity;
+    int finalprice;
+    Map<Integer,String>  merchant= new HashMap<Integer, String>();
+    Map<Integer,Integer>  pricelist= new HashMap<Integer, Integer>();
+    int merId;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -58,8 +69,36 @@ public class ProductDetails extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         pid = getArguments().getString("PID");
-
-
+        merId=getArguments().getInt("MER");
+        itemView2=view;
+        increase=(Button)view.findViewById(R.id.increase);
+        increase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                quantity=(TextView) itemView2.findViewById(R.id.quantity);
+                int quantityVal=Integer.parseInt(quantity.getText().toString());
+                if(quantityVal==10){
+                    Toast toast=Toast.makeText(itemView2.getContext(),"Maximum quantity is 10 per order",Toast.LENGTH_SHORT);
+                    toast.show();
+                }else{
+                    quantity.setText(Integer.toString(quantityVal+1));
+                }
+            }
+        });
+        decrease=(Button)itemView2.findViewById(R.id.decrease);
+        decrease.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                quantity=(TextView) itemView2.findViewById(R.id.quantity);
+                int quantityVal=Integer.parseInt(quantity.getText().toString());
+                if(quantityVal==1){
+                    Toast toast=Toast.makeText(itemView2.getContext(),"Minimum quantity required is 1",Toast.LENGTH_SHORT);
+                    toast.show();
+                }else{
+                    quantity.setText(Integer.toString(quantityVal-1));
+                }
+            }
+        });
 
         Api apiMerchant=new Api("http://172.16.20.24:8080");
         apiInterfaceMerchant=apiMerchant.getclient().create(ApiInterfaceMerchant.class);
@@ -77,18 +116,48 @@ public class ProductDetails extends Fragment {
                 for(MerchantResponse merchresp:merchantResponse)
                 {
                     System.out.println(merchresp.getPrice());
-                    merchant.add(merchresp.getMname()+" Rs-"+merchresp.getPrice());
+                    //merchant.add(merchresp.getMname()+" Rs-"+merchresp.getPrice()+" stock-"+merchresp.getStock());
+                    merchant.put(merchresp.getMId(),
+                            merchresp.getMname()+" Rs-"+merchresp.getPrice()+" stock-"+merchresp.getStock());
+                    pricelist.put(merchresp.getMId(),merchresp.getPrice());
                 }
+                Set<Integer> keys=merchant.keySet();
 
+                for (final int key :
+                        keys) {
 
-                for (String text :
-                        merchant) {
                     TextView textView = new TextView(getContext());
-                    textView.setText(text);
-                    textView.setTextSize(30);
+                    textView.setText(merchant.get(key));
+                    if(merId==key ||merId==0){
+                        textView.setTextSize(30);
+                        textView.setTextColor(Color.BLUE);
+                        textView.setGravity(3);
+                        merId=key;
+                    }
+                    else {
+                        textView.setTextSize(20);
+                    }
                     textView.setGravity(View.TEXT_ALIGNMENT_CENTER);
 
+
                     merchLayout.addView(textView);
+                    textView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //String pidRef = pid;
+                            Fragment fr = new ProductDetails();
+                            FragmentManager fm = getFragmentManager();
+                            FragmentTransaction ft = fm.beginTransaction();
+                            Bundle args = new Bundle();
+                            args.putString("PID", pid);
+                            args.putInt("MER",key);
+                            fr.setArguments(args);
+                            ft.replace(R.id.content_frame, fr);
+                            ft.commit();
+
+                        }
+                    });
+
                 }
             }
 
@@ -189,9 +258,10 @@ public class ProductDetails extends Fragment {
         cart1.setProductId(Integer.parseInt(pid));
         cart1.setImgurl(product.getImageUrl().toString());
         cart1.setAccesstoken(MainActivity.accesstoken);
-        cart1.setQuantity(1);
-        cart1.setMerchantId(merchantResponse.get(0).getMId());
-        cart1.setPrice(merchantResponse.get(0).getPrice());
+        TextView quantiyToCart=(TextView) itemView2.findViewById(R.id.quantity);
+        cart1.setQuantity(Integer.parseInt(quantiyToCart.getText().toString()));
+        cart1.setMerchantId(merId);
+        cart1.setPrice(pricelist.get(merId));
 
         Call<CartResponse> call=MainActivity.apiInterface.addToCart(cart1);
         call.enqueue(new Callback<CartResponse>() {

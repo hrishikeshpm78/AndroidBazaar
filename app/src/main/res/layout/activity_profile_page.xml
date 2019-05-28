@@ -25,7 +25,7 @@
             android:elevation="5dp"
             android:padding="20dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/my_pp" />
+            android:src="@drawable/circle_dp" />
 
         <RelativeLayout
             android:id="@+id/profile_layout"

@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.bazaar.R;
 import com.example.bazaar.pojos.cart.CartDTO;
@@ -16,6 +17,8 @@ import com.example.bazaar.pojos.cart.CartResponse;
 import com.example.bazaar.pojos.cart.ListItem;
 import com.example.bazaar.pojos.cart.Payload;
 import com.example.bazaar.pojos.product.Product;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +34,9 @@ public class CartPage extends AppCompatActivity {
     private CartResponse cartResponse;
     int tlprice=0;
     Payload payload;
+    Button increase;
+    Button decrease;
+    TextView quantity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,8 +67,8 @@ public class CartPage extends AppCompatActivity {
                     List<ListItem> list=payload.getList();
                     for (ListItem item:list) {
                         int price=item.getPrice();
-                        tlprice+=price;
                         int quantity=item.getQuantity();
+                        tlprice=tlprice+price*quantity;
                         String prodName=item.getProductname();
                         String imageUrl=item.getImgurl();
                         Log.e("imgurl",imageUrl);
@@ -85,6 +91,7 @@ public class CartPage extends AppCompatActivity {
                 Log.e("status","connection failure");
             }
         });
+
 
 
 

@@ -26,10 +26,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bazaar.R;
+import com.example.bazaar.mainactivities.api.ApiInterfaceForUser;
 import com.example.bazaar.mainactivities.homefragments.FirstFragment;
 import com.example.bazaar.mainactivities.homefragments.SearchFragment;
 import com.example.bazaar.mainactivities.homefragments.SecondFragment;
 import com.example.bazaar.mainactivities.homefragments.ThirdFragment;
+import com.example.bazaar.pojos.user.ResponseFromUser;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -198,6 +204,24 @@ public class Home extends AppCompatActivity
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.clear();
             editor.commit();
+
+            getRetrofitUser retrofitObject_user=new getRetrofitUser("http://172.16.20.81:8080");
+            ApiInterfaceForUser apiInterface =retrofitObject_user.getclient().create(ApiInterfaceForUser.class);
+            Call<ResponseFromUser> call=apiInterface.logout(MainActivity.accesstoken);
+            call.enqueue(new Callback<ResponseFromUser>() {
+                @Override
+                public void onResponse(Call<ResponseFromUser> call, Response<ResponseFromUser> response) {
+                    ResponseFromUser responseFromUser=response.body();
+                    Log.e("logout",responseFromUser.getStatus());
+                }
+
+                @Override
+                public void onFailure(Call<ResponseFromUser> call, Throwable t) {
+                    Log.e("fail_to_logout","fail logout");
+
+                }
+            });
+
 
             Intent intent = new Intent(Home.this, MainActivity.class);
             startActivity(intent);

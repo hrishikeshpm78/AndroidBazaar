@@ -13,6 +13,9 @@ import com.example.bazaar.R;
 
 public class CheckoutPage extends AppCompatActivity {
     Button checkoutBtn;
+    EditText checkoutAddress;
+    EditText emailfield;
+    int tlPrice;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,16 +26,17 @@ public class CheckoutPage extends AppCompatActivity {
 //        myAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
 //        mySpinner.setAdapter(myAdapter);
 
-        EditText checkoutAddress =(EditText) findViewById(R.id.checkoutAddress);
-        EditText emailfield=(EditText) findViewById(R.id.checkoutEmail);
+        checkoutAddress =(EditText) findViewById(R.id.checkoutAddress);
+        emailfield=(EditText) findViewById(R.id.checkoutEmail);
         final String email=emailfield.getText().toString();
+        tlPrice=Integer.parseInt(getIntent().getExtras().getString("tl_price"));
+
 
         checkoutBtn=(Button)findViewById(R.id.checkOutButton);
         checkoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(CheckoutPage.this,FinalPage.class);
-
                 EditText email=(EditText) findViewById(R.id.checkoutEmail);
                 EditText address=(EditText)findViewById(R.id.checkoutAddress);
                 String emailText=email.getText().toString();

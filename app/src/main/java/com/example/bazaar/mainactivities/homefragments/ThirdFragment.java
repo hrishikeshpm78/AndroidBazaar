@@ -29,6 +29,7 @@ public class ThirdFragment extends Fragment  {
     ApiInterfaceProduct apiInterface;
     List<Product> products;
     View myView;
+    int defaultMer=0;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -207,6 +208,7 @@ public class ThirdFragment extends Fragment  {
                 FragmentTransaction ft=fm.beginTransaction();
                 Bundle args = new Bundle();
                 args.putString("PID", pid);
+                args.putInt("MER",defaultMer);
                 fr.setArguments(args);
                 ft.replace(R.id.content_frame, fr);
                 ft.commit();
@@ -222,6 +224,7 @@ public class ThirdFragment extends Fragment  {
                 FragmentTransaction ft=fm.beginTransaction();
                 Bundle args = new Bundle();
                 args.putString("PID", pid);
+                args.putInt("MER",defaultMer);
                 fr.setArguments(args);
                 ft.replace(R.id.content_frame, fr);
                 ft.commit();
@@ -238,6 +241,7 @@ public class ThirdFragment extends Fragment  {
                 FragmentTransaction ft=fm.beginTransaction();
                 Bundle args = new Bundle();
                 args.putString("PID", pid);
+                args.putInt("MER",defaultMer);
                 fr.setArguments(args);
                 ft.replace(R.id.content_frame, fr);
                 ft.commit();
@@ -254,6 +258,7 @@ public class ThirdFragment extends Fragment  {
                 FragmentTransaction ft=fm.beginTransaction();
                 Bundle args = new Bundle();
                 args.putString("PID", pid);
+                args.putInt("MER",defaultMer);
                 fr.setArguments(args);
                 ft.replace(R.id.content_frame, fr);
                 ft.commit();
@@ -270,6 +275,7 @@ public class ThirdFragment extends Fragment  {
                 FragmentTransaction ft=fm.beginTransaction();
                 Bundle args = new Bundle();
                 args.putString("PID", pid);
+                args.putInt("MER",defaultMer);
                 fr.setArguments(args);
                 ft.replace(R.id.content_frame, fr);
                 ft.commit();
@@ -286,6 +292,7 @@ public class ThirdFragment extends Fragment  {
                 FragmentTransaction ft=fm.beginTransaction();
                 Bundle args = new Bundle();
                 args.putString("PID", pid);
+                args.putInt("MER",defaultMer);
                 fr.setArguments(args);
                 ft.replace(R.id.content_frame, fr);
                 ft.commit();
@@ -302,6 +309,7 @@ public class ThirdFragment extends Fragment  {
                 FragmentTransaction ft=fm.beginTransaction();
                 Bundle args = new Bundle();
                 args.putString("PID", pid);
+                args.putInt("MER",defaultMer);
                 fr.setArguments(args);
                 ft.replace(R.id.content_frame, fr);
                 ft.commit();
@@ -318,6 +326,7 @@ public class ThirdFragment extends Fragment  {
                 FragmentTransaction ft=fm.beginTransaction();
                 Bundle args = new Bundle();
                 args.putString("PID", pid);
+                args.putInt("MER",defaultMer);
                 fr.setArguments(args);
                 ft.replace(R.id.content_frame, fr);
                 ft.commit();
@@ -334,6 +343,7 @@ public class ThirdFragment extends Fragment  {
                 FragmentTransaction ft=fm.beginTransaction();
                 Bundle args = new Bundle();
                 args.putString("PID", pid);
+                args.putInt("MER",defaultMer);
                 fr.setArguments(args);
                 ft.replace(R.id.content_frame, fr);
                 ft.commit();
@@ -350,6 +360,7 @@ public class ThirdFragment extends Fragment  {
                 FragmentTransaction ft=fm.beginTransaction();
                 Bundle args = new Bundle();
                 args.putString("PID", pid);
+                args.putInt("MER",defaultMer);
                 fr.setArguments(args);
                 ft.replace(R.id.content_frame, fr);
                 ft.commit();
@@ -366,6 +377,7 @@ public class ThirdFragment extends Fragment  {
                 FragmentTransaction ft=fm.beginTransaction();
                 Bundle args = new Bundle();
                 args.putString("PID", pid);
+                args.putInt("MER",defaultMer);
                 fr.setArguments(args);
                 ft.replace(R.id.content_frame, fr);
                 ft.commit();
@@ -396,6 +408,7 @@ public class ThirdFragment extends Fragment  {
                 FragmentTransaction ft=fm.beginTransaction();
                 Bundle args = new Bundle();
                 args.putString("PID", pid);
+                args.putInt("MER",defaultMer);
                 fr.setArguments(args);
                 ft.replace(R.id.content_frame, fr);
                 ft.commit();
@@ -411,6 +424,7 @@ public class ThirdFragment extends Fragment  {
                 FragmentTransaction ft=fm.beginTransaction();
                 Bundle args = new Bundle();
                 args.putString("PID", pid);
+                args.putInt("MER",defaultMer);
                 fr.setArguments(args);
                 ft.replace(R.id.content_frame, fr);
                 ft.commit();
@@ -426,6 +440,7 @@ public class ThirdFragment extends Fragment  {
                 FragmentTransaction ft=fm.beginTransaction();
                 Bundle args = new Bundle();
                 args.putString("PID", pid);
+                args.putInt("MER",defaultMer);
                 fr.setArguments(args);
                 ft.replace(R.id.content_frame, fr);
                 ft.commit();

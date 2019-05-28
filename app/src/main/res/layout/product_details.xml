@@ -56,6 +56,40 @@
                     android:textSize="30sp"
                     android:textAlignment="center"/>
                 <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/decrease"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="-"
+                        android:textSize="10sp"/>
+
+                    <TextView
+                        android:id="@+id/quantity"
+                        android:layout_width="0sp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginRight="40dp"
+                        android:textAlignment="center"
+                        android:layout_marginTop="0dp"
+                        android:text="1"
+                        android:textStyle="bold"
+                        android:textSize="30sp" />
+
+                    <Button
+                        android:id="@+id/increase"
+                        android:layout_weight="1"
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:text="+" />
+                </LinearLayout>
+                <LinearLayout
                     android:id="@+id/pd_attributes"
                     android:layout_marginTop="4dp"
                     android:layout_width="match_parent"
