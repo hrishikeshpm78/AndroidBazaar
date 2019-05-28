@@ -67,7 +67,11 @@ public class SearchFragment extends Fragment  {
                             String imageUrl = product.getImageUrl().get("1");
 //                            String pName = product.getName();
                             Log.e("imageeeeee",imageUrl);
-                            SearchObject object = new SearchObject(pName,imageUrl,category);
+
+                            String pid=Integer.toString(product.getId());
+                            int mer=0;
+
+                            SearchObject object = new SearchObject(pName,imageUrl,category,pid,mer);
                             list.add(object);
                         }
 
@@ -85,8 +89,6 @@ public class SearchFragment extends Fragment  {
                             }
                         });
                     }
-
-
                 }
 
                 @Override

@@ -28,6 +28,7 @@ import android.widget.Toast;
 import com.example.bazaar.R;
 import com.example.bazaar.mainactivities.api.ApiInterfaceForUser;
 import com.example.bazaar.mainactivities.homefragments.FirstFragment;
+import com.example.bazaar.mainactivities.homefragments.ProductDetails;
 import com.example.bazaar.mainactivities.homefragments.SearchFragment;
 import com.example.bazaar.mainactivities.homefragments.SecondFragment;
 import com.example.bazaar.mainactivities.homefragments.ThirdFragment;
@@ -58,7 +59,24 @@ public class Home extends AppCompatActivity
                     .replace(R.id.content_frame, new SearchFragment())
                     .addToBackStack(null)
                     .commit();
-        } else {
+        } else if(s1.equals("Search")){
+
+            String pid=b.getString("PID");
+            String mer=b.getString("MER");
+
+            Fragment fr = new ProductDetails();
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            Bundle args = new Bundle();
+
+            args.putString("PID", pid);
+            args.putInt("MER", Integer.parseInt(mer));
+            fr.setArguments(args);
+            ft.replace(R.id.content_frame, fr);
+            ft.commit();
+
+        }else
+            {
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame, new FirstFragment())

@@ -9,6 +9,36 @@ public class SearchObject {
     private String productImage;
     private String category;
 
+    private String pid;
+    private int mer;
+
+    public SearchObject(String productName, String productImage, String category, String pid, int mer) {
+        this.productName = productName;
+        this.productImage = productImage;
+        this.category = category;
+        this.pid = pid;
+        this.mer = mer;
+    }
+
+    public SearchObject() {
+    }
+
+    public String getPid() {
+        return pid;
+    }
+
+    public void setPid(String pid) {
+        this.pid = pid;
+    }
+
+    public int getMer() {
+        return mer;
+    }
+
+    public void setMer(int mer) {
+        this.mer = mer;
+    }
+
     public SearchObject(String productName, String productImage) {
         this.productName = productName;
         this.productImage = productImage;

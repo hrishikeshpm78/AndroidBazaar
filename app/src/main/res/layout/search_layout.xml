@@ -35,7 +35,7 @@
         android:textColor="@color/colorPrimaryDark"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/recyclerSearch"
-        app:layout_constraintEnd_toStartOf="@+id/gotoSort"
+        app:layout_constraintEnd_toStartOf="@+id/sr_gotoSort"
         app:layout_constraintHorizontal_bias="0.114"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/frameLayout"

@@ -16,7 +16,8 @@ public class SearchViewHolder extends RecyclerView.ViewHolder {
     ImageView image;
     TextView category;
     TextView price;
-    CardView card;
+    CardView searchItem;
+
 
     SearchViewHolder(View itemView) {
         super(itemView);
@@ -24,7 +25,7 @@ public class SearchViewHolder extends RecyclerView.ViewHolder {
         image = (ImageView) itemView.findViewById(R.id.imagesearch);
         category=(TextView) itemView.findViewById(R.id.search_category);
         price=(TextView) itemView.findViewById(R.id.price_search);
-        card=(CardView) itemView.findViewById(R.id.search_item_view);
+        searchItem=(CardView) itemView.findViewById(R.id.search_item_view);
     }
 //    public void bind(SearchObject obj){
 //        pName.setText(obj.getProductName());
